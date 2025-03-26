@@ -26,7 +26,9 @@
 
 <body>
     @auth
-        <div style="padding-left:40%; padding-top: 10%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
             <h2>Create a Post</h2>
             <form action="/create_post" method="POST">
                 @csrf
@@ -39,13 +41,22 @@
                 </div>
                 <br>
                 <div>
-                    <input type="submit" style="background:skyblue; cursor: pointer; padding:10px; border-radius:10px; ">
+                    <input type="submit" style="background:skyblue; cursor: pointer; padding:10px; border-radius:10px; " value="Save Post">
                 </div>
             </form>
             <form action="/logout" method="POST">
                 @csrf
                 <button class="btn btn-danger" style="margin-top: 5%"><i class="fas fa-sign-out-alt"></i>Logout</button>
             </form>
+        </div>
+        <div class="col-md-6">
+            <h2>All Posts</h2>
+            @foreach ($posts as $post)
+            <div style="background-color: skyblue">
+            <h4>{{$post['title']}}</h4>
+            {{$post['body']}}
+        </div>
+            @endforeach
         </div>
     @else
         <center>
