@@ -57,6 +57,12 @@
             {{$post['body']}}
         </div>
             @endforeach
+            <p><a href="/update_post/{{$post->id}}" class="btn btn-primary" style="margin-top: 5%">Update</a></p>
+            <form action="/delete_post/{{$post->id}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-warning">Delete</button>
+            </form>
         </div>
     @else
         <center>
