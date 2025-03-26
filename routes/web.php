@@ -22,8 +22,9 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::post('/login', [UserController::class, 'login']);
 //Blog Post Controller
 Route::post('/create_post', [PostController::class, 'createPost']);
-//get from the data base
+//get from the database for editing
 Route::get('/update_post/{post}', [PostController::class, 'updatePost']);
 //update and post to the database
-Route::put('/update_post/{post}', [PostController::class, 'actualUpdate']);
-Route::post('/delete_post', [PostController::class, 'deletePost']);
+Route::put('/edit_post/{post}', [PostController::class, 'actualUpdate']);
+//delete in the database
+Route::delete('/delete_post/{post}', [PostController::class, 'deletePost']);

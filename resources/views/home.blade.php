@@ -26,44 +26,48 @@
 
 <body>
     @auth
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-            <h2>Create a Post</h2>
-            <form action="/create_post" method="POST">
-                @csrf
-                <div>
-                    <input type="text" name="title" placeholder="Post title">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Create a Post</h2>
+                    <form action="/create_post" method="POST">
+                        @csrf
+                        <div>
+                            <input type="text" name="title" placeholder="Post title">
+                        </div>
+                        <br>
+                        <div>
+                            <textarea name="body" placeholder="Body Content"></textarea>
+                        </div>
+                        <br>
+                        <div>
+                            <input type="submit"
+                                style="background:skyblue; cursor: pointer; padding:10px; border-radius:10px; "
+                                value="Save Post">
+                        </div>
+                    </form>
+                    <form action="/logout" method="POST">
+                        @csrf
+                        <button class="btn btn-danger" style="margin-top: 5%"><i
+                                class="fas fa-sign-out-alt"></i>Logout</button>
+                    </form>
                 </div>
-                <br>
-                <div>
-                    <textarea name="body" placeholder="Body Content"></textarea>
+                <div class="col-md-6">
+                    <h2>All Posts</h2>
+                    @foreach ($posts as $post)
+                        <div style="background-color: skyblue">
+                            <h4>{{$post['title']}} by {{$post->user->name}}</h4>
+                            {{$post['body']}}
+                        </div>
+
+                        <p><a href="/update_post/{{$post->id}}" class="btn btn-primary" style="margin-top: 5%">Update</a></p>
+                        <form action="/delete_post/{{$post->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-warning">Delete</button>
+                        </form>
+                    @endforeach
                 </div>
-                <br>
-                <div>
-                    <input type="submit" style="background:skyblue; cursor: pointer; padding:10px; border-radius:10px; " value="Save Post">
-                </div>
-            </form>
-            <form action="/logout" method="POST">
-                @csrf
-                <button class="btn btn-danger" style="margin-top: 5%"><i class="fas fa-sign-out-alt"></i>Logout</button>
-            </form>
-        </div>
-        <div class="col-md-6">
-            <h2>All Posts</h2>
-            @foreach ($posts as $post)
-            <div style="background-color: skyblue">
-            <h4>{{$post['title']}}</h4>
-            {{$post['body']}}
-        </div>
-            @endforeach
-            <p><a href="/update_post/{{$post->id}}" class="btn btn-primary" style="margin-top: 5%">Update</a></p>
-            <form action="/delete_post/{{$post->id}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-warning">Delete</button>
-            </form>
-        </div>
     @else
         <center>
             <div class="container">

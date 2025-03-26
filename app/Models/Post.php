@@ -12,4 +12,8 @@ protected $fillable = [
     "body", 
     "user_id"
 ] ;
+//relationship for the foreign key
+public function user(){
+    return $this->belongsTo(User::class,"user_id");
+}
 }

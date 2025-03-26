@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,23 +24,26 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <center>
-<h1>Edit Post</h1>
-<form action="/update_post/{{$post->id}}" method="PUT">
-    @csrf
-    @method('PUT')
-    <input type="text" name="tile" value="{{$post->title}}">
-    <br>
-    <textarea style="margin-top: 2%" name="body">{{$post->body}}></textarea>
-    <br>
-    <button class="btn btn-primary">Save Changes</button>
-</form></center>
+                    <h1>Edit Post</h1>
+                    <form action="/edit_post/{{$post->id}}" method="POST">
+                        @csrf
+                        @method('PUT')
+                        <input type="text" name="title" value="{{$post->title}}">
+                        <br>
+                        <textarea style="margin-top: 2%" name="body">{{$post->body}}</textarea>
+                        <br>
+                        <button class="btn btn-primary">Save Changes</button>
+                    </form>
+                </center>
             </div>
         </div>
     </div>
 </body>
+
 </html>
